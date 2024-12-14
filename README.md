@@ -1,11 +1,10 @@
 # Turish
-
-Terminal:
-This is my personal terminal Project. I'm doing this because I want to learn about the OS and create one in future.
+ Remember this Project is still in development 
 
 # Source code
 You can find the source code in the "src" folder.
 
 # Header files
 The header files are in the "include" folder. 
+
 

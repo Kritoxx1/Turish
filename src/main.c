@@ -20,7 +20,20 @@ int main(int argc, char *argv[]) {
 
     while(terminalIsRunning){
     printf(">>> ");
-    scanf("%s", input);
+    fflush(stdout);
+    
+    if (fgets(input, sizeof(input), stdin) == NULL) {
+        continue; // Bei einem Fehler wird es wiederholt 
+    }
+
+    printf("Input: %s\n", input);
+    
+    // Entfernt das \n am ende der Eingabe
+    input[strcspn(input, "\n")] = 0;
+
+    if (strlen(input) == 0) {
+        continue;
+    }
 
     if (strcmp(input, "ls") == 0) {     
         if (argc > 1) {
@@ -36,7 +49,8 @@ int main(int argc, char *argv[]) {
     else if (strcmp(input, "clear") == 0) 
     {
         clear_screen();
-    } else if (strcmp(input, "cd") == 0) {
+    }
+    else if (strcmp(input, "cd") == 0) {
         char new_path [256];
         scanf("%s", new_path);
         change_directory(new_path);
@@ -50,4 +64,6 @@ int main(int argc, char *argv[]) {
 }
 
 // TODO
-// >>> idk
+// fix that >>> problem
+// This is funny
+// Help

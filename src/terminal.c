@@ -16,8 +16,20 @@ void list_directory (const char *path) { // Lists the files where the user curre
     closedir(dir); // Verzeichnis wird geschlossen.
 }
 
-void change_directory () { // Changes to a other directory
-
+void change_directory (const char *path) { // Changes to a other directory
+    if (strcmp(path, "~") == 0) {
+        const char *home = getenv("HOME");
+        if (home == NULL) {
+            printf("Error: HOME environment variable not set.\n");
+            return;
+        }
+        path = home;
+    }    
+    if (chdir(path) == 0) {
+        printf("changed to diretory: %s\n", path);
+    } else {
+        printf("Error changing to directory %s\n", path, strerror(errno));
+    }
 }
 
 void clear_screen () {

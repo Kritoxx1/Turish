@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <unistd.h>
+#include <errno.h>
 
 // My files
 #include "/home/turi/Projects/terminal/include/terminal.h" 
@@ -11,23 +12,17 @@
 
 int main(int argc, char *argv[]) {
 
-/* --------------------------------------------
- *
- *              VARIABLEN
- *
- * --------------------------------------------
- * */
-
+// Variablen
     const char *path = ".";  // Standardmäßig aktuelles Verzeichnis
     char input[256];
-    char commands[256] = "ls"; 
+    char commands[256];
     bool terminalIsRunning = true;
 
     while(terminalIsRunning){
     printf(">>> ");
     scanf("%s", input);
 
-    if (strcmp(input, commands) == 0) {     
+    if (strcmp(input, "ls") == 0) {     
         if (argc > 1) {
             path = argv[1]; // Wenn ein Pfad angegeben ist, dann diesen Verwenden.
         }
@@ -41,15 +36,18 @@ int main(int argc, char *argv[]) {
     else if (strcmp(input, "clear") == 0) 
     {
         clear_screen();
-    } 
-    else if (input == 0) 
-    {
-        printf(">>> ");         
-    } 
+    } else if (strcmp(input, "cd") == 0) {
+        char new_path [256];
+        scanf("%s", new_path);
+        change_directory(new_path);
+    }
     else 
     {
-        printf("turish: unbekannter command (""%s"")\n", input);
+        printf("turish: unbekannter command (%s)\n", input);
     }
  }
     return 0;
 }
+
+// TODO
+// >>> idk

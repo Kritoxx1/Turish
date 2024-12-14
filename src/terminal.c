@@ -17,13 +17,13 @@ void list_directory (const char *path) { // Lists the files where the user curre
 }
 
 void change_directory (const char *path) { // Changes to a other directory
-    if (strcmp(path, "~") == 0) {
+    if (strcmp(path, "~") == 0) { // Überprüft ob der Benutzer "~" eingibt.
         const char *home = getenv("HOME");
         if (home == NULL) {
             printf("Error: HOME environment variable not set.\n");
             return;
         }
-        path = home;
+        path = home; // Setzt den Pfad auf das Home-Vereichnis
     }    
     if (chdir(path) == 0) {
         printf("changed to diretory: %s\n", path);
